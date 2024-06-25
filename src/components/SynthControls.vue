@@ -5,76 +5,88 @@ import SynthControlSlider from './SynthControlSlider.vue'
 <template>
   <div class="controls">
     <div class="base-controls">
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
-      <SynthControlSlider />
+      <SynthControlSlider
+        name="oscType"
+        :min="0"
+        :max="99"
+        :step="33"
+        annotation="Oscillator type"
+      />
+      <SynthControlSlider
+        name="filter"
+        :min="0"
+        :max="20000"
+        :step="1"
+        annotation="Filter cutoff"
+      />
+      <SynthControlSlider name="stereo" :min="0" :max="2" step="any" annotation="Stereo width" />
+      <SynthControlSlider name="transpose" :min="-2" :max="2" :step="1" annotation="Transpose" />
+    </div>
+    <div class="ADSR">
+      <SynthControlSlider name="attack" :min="0.001" :max="5" :step="0.1" annotation="Attack" />
+      <SynthControlSlider name="decay" :min="0" :max="5" :step="0.1" annotation="Decay" />
+      <SynthControlSlider name="sustain" :min="0" :max="1" :step="0.1" annotation="Sustain" />
+      <SynthControlSlider name="release" :min="0.015" :max="5" :step="0.1" annotation="Release" />
+    </div>
+    <div class="delay">
+      <SynthControlSlider
+        name="delayVolume"
+        :min="0"
+        :max="0.99"
+        :step="0.01"
+        annotation="Delay volume"
+      />
+      <SynthControlSlider
+        name="delayTime"
+        :min="0.03"
+        :max="2"
+        :step="0.01"
+        annotation="Delay time"
+      />
+      <SynthControlSlider
+        name="delayFeedback"
+        :min="0"
+        :max="0.99"
+        :step="0.01"
+        annotation="Delay feedback"
+      />
+      <SynthControlSlider
+        name="masterVolume"
+        :min="0"
+        :max="1"
+        :step="0.01"
+        annotation="Master volume"
+      />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.presets {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  /* grid-column-start: 3;
-  grid-column-end: 4; */
+.controls {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 5;
 
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr 3fr 3fr 1fr;
 
-  text-align: center;
+  margin-bottom: 30px;
 }
 
-.presets button {
-  background-color: transparent;
-  border: none;
-  font-size: 1rem;
-  color: black;
-  transition: color 0.2s;
-}
-
-.presets button:hover {
-  color: rgb(55, 147, 255);
-}
-
-.presets button:active {
-  filter: contrast(200%);
-}
-
-.arrow-left {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 1;
-  grid-column-end: 2;
-
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.preset-field {
-  grid-row-start: 1;
-  grid-row-end: 2;
+.base-controls {
   grid-column-start: 2;
   grid-column-end: 3;
 }
 
-.arrow-right {
-  grid-row-start: 1;
-  grid-row-end: 2;
+.ADSR {
   grid-column-start: 3;
   grid-column-end: 4;
+}
 
-  margin-top: auto;
-  margin-bottom: auto;
+.delay {
+  grid-column-start: 4;
+  grid-column-end: 5;
 }
 </style>

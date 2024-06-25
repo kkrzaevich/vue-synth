@@ -4,7 +4,7 @@
   <div class="presets">
     <div class="arrow-left">
       <button id="arrow-left">
-        <i class="fa-solid fa-arrow-left"></i>
+        <i class="pi pi-arrow-left"></i>
       </button>
     </div>
     <div class="preset">
@@ -12,7 +12,7 @@
     </div>
     <div class="arrow-right">
       <button id="arrow-right">
-        <i class="fa-solid fa-arrow-right"></i>
+        <i class="pi pi-arrow-right"></i>
       </button>
     </div>
   </div>
@@ -73,5 +73,41 @@
 
   margin-top: auto;
   margin-bottom: auto;
+}
+
+/* Для широких экранов */
+
+@media (min-width: 1300px) {
+  .presets {
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+}
+
+/* Для чуть менее широких экранов */
+
+@media (max-width: 1299px) {
+  .presets {
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+}
+
+/* Для планшетов */
+
+@media (max-width: 1149px) {
+  .presets {
+    grid-column-start: 2;
+    grid-column-end: 5;
+  }
+}
+
+/* Для телефонов */
+
+@media (max-width: 909px) {
+  .presets {
+    grid-column-start: 2;
+    grid-column-end: 5;
+  }
 }
 </style>
