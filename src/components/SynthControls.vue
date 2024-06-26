@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SynthControlSlider from './SynthControlSlider.vue'
+import { getOscType } from '@/hooks/getOscType'
 </script>
 
 <template>
@@ -10,23 +11,59 @@ import SynthControlSlider from './SynthControlSlider.vue'
         :min="0"
         :max="99"
         :step="33"
+        :values="getOscType"
         annotation="Oscillator type"
       />
       <SynthControlSlider
-        name="filter"
+        name="filterFreq"
         :min="0"
         :max="20000"
         :step="1"
         annotation="Filter cutoff"
       />
-      <SynthControlSlider name="stereo" :min="0" :max="2" step="any" annotation="Stereo width" />
+      <SynthControlSlider
+        name="stereoWidth"
+        :min="0"
+        :max="2"
+        :rounding="2"
+        step="any"
+        annotation="Stereo width"
+      />
       <SynthControlSlider name="transpose" :min="-2" :max="2" :step="1" annotation="Transpose" />
     </div>
     <div class="ADSR">
-      <SynthControlSlider name="attack" :min="0.001" :max="5" :step="0.1" annotation="Attack" />
-      <SynthControlSlider name="decay" :min="0" :max="5" :step="0.1" annotation="Decay" />
-      <SynthControlSlider name="sustain" :min="0" :max="1" :step="0.1" annotation="Sustain" />
-      <SynthControlSlider name="release" :min="0.015" :max="5" :step="0.1" annotation="Release" />
+      <SynthControlSlider
+        name="attack"
+        :min="0.001"
+        :max="5"
+        :step="0.1"
+        :rounding="2"
+        annotation="Attack"
+      />
+      <SynthControlSlider
+        name="decay"
+        :min="0"
+        :max="5"
+        :step="0.1"
+        :rounding="2"
+        annotation="Decay"
+      />
+      <SynthControlSlider
+        name="sustain"
+        :min="0"
+        :max="1"
+        :step="0.1"
+        :rounding="2"
+        annotation="Sustain"
+      />
+      <SynthControlSlider
+        name="release"
+        :min="0.015"
+        :max="5"
+        :step="0.1"
+        :rounding="2"
+        annotation="Release"
+      />
     </div>
     <div class="delay">
       <SynthControlSlider
@@ -34,6 +71,7 @@ import SynthControlSlider from './SynthControlSlider.vue'
         :min="0"
         :max="0.99"
         :step="0.01"
+        :rounding="2"
         annotation="Delay volume"
       />
       <SynthControlSlider
@@ -41,6 +79,7 @@ import SynthControlSlider from './SynthControlSlider.vue'
         :min="0.03"
         :max="2"
         :step="0.01"
+        :rounding="2"
         annotation="Delay time"
       />
       <SynthControlSlider
@@ -48,6 +87,7 @@ import SynthControlSlider from './SynthControlSlider.vue'
         :min="0"
         :max="0.99"
         :step="0.01"
+        :rounding="2"
         annotation="Delay feedback"
       />
       <SynthControlSlider
@@ -55,6 +95,7 @@ import SynthControlSlider from './SynthControlSlider.vue'
         :min="0"
         :max="1"
         :step="0.01"
+        :rounding="2"
         annotation="Master volume"
       />
     </div>

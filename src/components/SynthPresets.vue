@@ -1,18 +1,25 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { type Preset } from '@/types/types'
+import { ref, onMounted, computed, watch } from 'vue'
+import { presetTable } from '@/data/presetData'
+import { usePresetStore } from '@/stores/presets'
+
+const presetStore = usePresetStore()
+</script>
 
 <template>
   <div class="presets">
     <div class="arrow-left">
-      <button id="arrow-left">
+      <button id="arrow-left" @click="presetStore.prevPreset">
         <i class="pi pi-arrow-left"></i>
       </button>
     </div>
     <div class="preset">
-      <p id="preset-field">Preset name</p>
+      <p id="preset-field">{{ presetStore.currentPreset.name }}</p>
     </div>
     <div class="arrow-right">
       <button id="arrow-right">
-        <i class="pi pi-arrow-right"></i>
+        <i class="pi pi-arrow-right" @click="presetStore.nextPreset"></i>
       </button>
     </div>
   </div>

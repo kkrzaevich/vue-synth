@@ -1,26 +1,71 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, ref, computed, watch, onMounted } from 'vue'
+import { useSettingsStore } from '@/stores/settings'
+import { usePresetStore } from '@/stores/presets'
 
-const props = defineProps<{
-  name: { type: String; required: true }
-  min: { type: Number; required: true }
-  max: { type: Number; required: true }
-  step: { type: Number | String; required: true }
-  annotation: { type: String; required: true }
-  values?: { type: Function }
-}>()
+const settingStore = useSettingsStore()
+
+const presetStore = usePresetStore()
+
+export interface Props {
+  name: string
+  min: number
+  max: number
+  step: number | string
+  annotation: string
+  rounding?: number
+  values?: Function
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  rounding: 0
+})
+
+const sliderValue = ref<number>(0)
+
+function setStoreValue() {
+  settingStore.setSetting(props.name, Number(sliderValue.value))
+}
+
+const sliderValueComputed = computed<number | null>(() => {
+  if (props.values) {
+    return props.values(Number(sliderValue.value))
+  } else {
+    return null
+  }
+})
+
+presetStore.$subscribe(() => {
+  sliderValue.value = settingStore.getSetting(props.name)
+})
+
+onMounted(() => {
+  sliderValue.value = settingStore.getSetting(props.name)
+})
 </script>
 
 <template>
   <p>{{ annotation }}</p>
-  <input type="range" :id="oscType" name="oscType" :min="min" value="0" :max="max" :step="step" />
-  <label for="oscType" :id="`oscType${Label}`">{{ values ? values() : value }}</label>
+  <input
+    type="range"
+    :id="name"
+    :name="name"
+    :min="min"
+    v-model="sliderValue"
+    @change.prevent="setStoreValue"
+    value="0"
+    :max="max"
+    :step="step"
+  />
+  <label for="oscType">{{
+    values ? sliderValueComputed : Number(sliderValue).toFixed(rounding)
+  }}</label>
 </template>
 
 <style scoped lang="scss">
 input[type='range'] {
   filter: grayscale(100%);
-  transition: filter 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 input[type='range']:hover {

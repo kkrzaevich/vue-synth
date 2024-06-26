@@ -4,7 +4,7 @@ import SynthKeyboardOctaveKey from './SynthKeyboardOctaveKey.vue'
 import { defineProps } from 'vue'
 
 const props = defineProps<{
-  octave: { type: Object; required: true }
+  octave: object
 }>()
 </script>
 
