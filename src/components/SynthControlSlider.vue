@@ -46,8 +46,7 @@ onMounted(() => {
 
 <template>
   <p>{{ annotation }}</p>
-  <input
-    type="range"
+  <v-slider
     :id="name"
     :name="name"
     :min="min"
@@ -56,22 +55,15 @@ onMounted(() => {
     value="0"
     :max="max"
     :step="step"
+    width="50%"
   />
+
   <label for="oscType">{{
     values ? sliderValueComputed : Number(sliderValue).toFixed(rounding)
   }}</label>
 </template>
 
 <style scoped lang="scss">
-input[type='range'] {
-  filter: grayscale(100%);
-  transition: all 0.2s ease-in-out;
-}
-
-input[type='range']:hover {
-  filter: none;
-}
-
 /* Для планшетов */
 
 @media (max-width: 1149px) {

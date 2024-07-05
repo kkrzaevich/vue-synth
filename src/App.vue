@@ -1,7 +1,28 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import { createAudioNodes } from './hooks/music'
 import SynthPresets from './components/SynthPresets.vue'
 import SynthKeyboard from './components/SynthKeyboard.vue'
 import SynthControls from './components/SynthControls.vue'
+
+onMounted(() => {
+  const { context, delayNode, delayFeedback, delayGain } = createAudioNodes()
+
+  const oscillator = context.createOscillator()
+  // Присвоить ему тип и частоту
+  oscillator.type = 'sine'
+  oscillator.frequency.setValueAtTime(440, 0)
+  // Задать гейн = 0
+  // gain.gain.value = 0
+  // Включить осциллятор
+  oscillator.start(0)
+  let mainGainNode = null
+  mainGainNode = context.createGain()
+  mainGainNode.connect(context.destination)
+  mainGainNode.gain.value = 1
+  // Присоединить к гейну
+  oscillator.connect(mainGainNode)
+})
 </script>
 
 <template>
