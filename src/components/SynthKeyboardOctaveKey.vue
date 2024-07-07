@@ -1,14 +1,94 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, reactive, watch } from 'vue'
+import type { Sound } from '@/types/sound'
+import { useSettingsStore } from '@/stores/settings'
+const settingStore = useSettingsStore()
 
 const props = defineProps<{
-  keyStyle: { type: String; required: true }
-  button?: { type: String }
+  keyStyle: string
+  sound: Sound | null
+  button?: { name: string; code: string | null }
+  context: AudioContext | null
 }>()
+
+const playEvents = reactive({ pointerdown: false, pointerover: false })
+
+const stopEvents = reactive({ pointerup: false, pointerout: false })
+
+watch(playEvents, () => {
+  if (playEvents.pointerdown && playEvents.pointerover) {
+    play()
+  }
+})
+
+watch(stopEvents, () => {
+  if (stopEvents.pointerup && stopEvents.pointerout) {
+    stop()
+  }
+})
+
+function play() {
+  if (props.context && props.sound) {
+    props.sound.play(props.context)
+  }
+}
+
+function stop() {
+  if (props.context && props.sound) {
+    props.sound.stop()
+  }
+}
+
+function keyPress(event: any) {
+  console.log('event', event.keyCode)
+  console.log('prop', props.button?.code)
+  if (event.keyCode === props.button?.code) {
+    console.log('here we are')
+    play()
+  }
+}
+
+function keyRelease(event: any) {
+  // console.log(event.keyCode)
+  if (event.keyCode === props.button?.code) {
+    console.log('here we stop')
+    stop()
+  }
+}
 </script>
 
 <template>
-  <button :class="`key ${keyStyle}`">{{ button }}</button>
+  <button
+    :class="`key ${keyStyle}`"
+    @keydown="keyPress"
+    @keyup="keyRelease"
+    @pointerdown="
+      () => {
+        playEvents.pointerdown = true
+        stopEvents.pointerup = false
+      }
+    "
+    @pointerover="
+      () => {
+        playEvents.pointerover = true
+        stopEvents.pointerout = false
+      }
+    "
+    @pointerup="
+      () => {
+        stopEvents.pointerup = true
+        playEvents.pointerdown = false
+      }
+    "
+    @pointerout="
+      () => {
+        stopEvents.pointerout = true
+        playEvents.pointerover = false
+      }
+    "
+  >
+    {{ button?.name }}
+  </button>
 </template>
 
 <style scoped lang="scss">

@@ -31,7 +31,7 @@ import type { Settings } from '@/types/types.ts'
 //   note.stop()
 // }
 
-export class Note {
+export class Sound {
   settings: Settings
   stage: 'attack' | 'decay' | 'release' | 'sustain' = 'attack'
   interval: ReturnType<typeof setInterval> | null = null
@@ -78,7 +78,7 @@ export class Note {
     this.stereoPan.pan.value = this.panSetting
   }
   createDelay(context: AudioContext) {
-    this.delayNode.node = context.createDelay()
+    this.delayNode.node = context.createDelay(2)
     this.delayNode.node.delayTime.value = this.settings.delayTime
     this.delayNode.feedback = context.createGain()
     this.delayNode.feedback.gain.value = this.settings.delayFeedback
@@ -119,23 +119,19 @@ export class Note {
       this.delayNode.gain = null
       clearInterval(this.interval)
       this.interval = null
-      console.log('deleted')
     }
   }
   getTimeStep() {
     if (this.stage === 'attack') {
-      return this.settings.attack / 10
+      return this.settings.attack * 100
     } else if (this.stage === 'decay') {
-      return this.settings.decay / 10
+      return this.settings.decay * 100
     } else if (this.stage === 'release') {
-      return this.settings.release / 10
+      return this.settings.release * 100
     }
   }
   evaluateVolumeDifference(targetVolume: number, currentGain: number) {
     const difference = Math.abs((targetVolume - currentGain) / currentGain)
-    if (this.stage === 'release') {
-      console.log('targetVolume', targetVolume)
-    }
     if (difference < 0.001) {
       return true
     } else {
@@ -144,7 +140,7 @@ export class Note {
   }
   evaluateStageChange(currentGain: number) {
     if (this.stage === 'attack') {
-      if (this.evaluateVolumeDifference(this.settings.volume, currentGain)) {
+      if (this.evaluateVolumeDifference(this.settings.volume * 0.1, currentGain)) {
         if (this.settings.sustain === 1) {
           this.stage = 'sustain'
         } else {
@@ -158,7 +154,10 @@ export class Note {
 
       if (this.settings.sustain !== 0) {
         if (
-          this.evaluateVolumeDifference(this.settings.volume * this.settings.sustain, currentGain)
+          this.evaluateVolumeDifference(
+            this.settings.volume * 0.1 * this.settings.sustain,
+            currentGain
+          )
         ) {
           this.stage = 'sustain'
         }
@@ -173,8 +172,8 @@ export class Note {
   }
   playAttack(context: AudioContext) {
     if (this.gainNode) {
-      const timeStep = this.settings.attack / 3
-      const newVal = this.settings.volume
+      const timeStep = (this.settings.attack * 1000) / 3
+      const newVal = this.settings.volume * 0.1
       this.gainNode.gain.setTargetAtTime(newVal, context.currentTime, timeStep / 1000)
 
       this.evaluateStageChange(this.gainNode.gain.value)
@@ -182,8 +181,8 @@ export class Note {
   }
   playDecay(context: AudioContext) {
     if (this.gainNode) {
-      const timeStep = this.settings.decay / 3
-      const newVal = this.settings.volume * this.settings.sustain
+      const timeStep = (this.settings.decay * 1000) / 3
+      const newVal = this.settings.volume * 0.1 * this.settings.sustain
       this.gainNode.gain.setTargetAtTime(newVal, context.currentTime, timeStep / 1000)
 
       this.evaluateStageChange(this.gainNode.gain.value)
@@ -194,7 +193,7 @@ export class Note {
   }
   playRelease(context: AudioContext) {
     if (this.gainNode) {
-      const timeStep = this.settings.release / 3
+      const timeStep = (this.settings.release * 1000) / 3
       const newVal = 0
       this.gainNode.gain.setTargetAtTime(newVal, context.currentTime, timeStep / 1000)
 
@@ -236,5 +235,26 @@ export class Note {
   }
   stop() {
     this.stage = 'release'
+  }
+  changeSettings() {
+    if (
+      this.oscillator &&
+      this.filterNode &&
+      this.delayNode.node &&
+      this.delayNode.gain &&
+      this.delayNode.feedback
+    ) {
+      this.oscillator.type = this.settings.oscType
+      this.filterNode.frequency.value = this.settings.filterFreq
+      this.delayNode.node.delayTime.value = this.settings.delayTime
+      this.delayNode.feedback.gain.value = this.settings.delayFeedback
+      this.delayNode.gain.gain.value = this.settings.delayVolume
+    }
+  }
+  changeFrequency(freq: number) {
+    this.noteFreq = freq
+    if (this.oscillator) {
+      this.oscillator.frequency.setValueAtTime(this.noteFreq, 0)
+    }
   }
 }

@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { Octave } from '@/types/types'
 import SynthKeyboardOctaveKey from './SynthKeyboardOctaveKey.vue'
 
 import { defineProps } from 'vue'
 
 const props = defineProps<{
-  octave: object
+  octave: Octave
+  context: AudioContext | null
 }>()
 </script>
 
@@ -15,6 +17,8 @@ const props = defineProps<{
       :keyStyle="key.keyStyle"
       :key="index"
       :button="key.keyButton"
+      :sound="key.sound"
+      :context="context"
     />
   </div>
 </template>

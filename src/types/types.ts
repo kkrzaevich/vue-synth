@@ -1,3 +1,5 @@
+import type { Sound } from './sound'
+
 export type oscType = 'sine' | 'triangle' | 'square' | 'sawtooth'
 
 export interface Settings {
@@ -23,3 +25,17 @@ export class Preset {
   name: string
   settings: Settings
 }
+
+export type Note = 'C' | 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' | 'A#' | 'B'
+
+export type Octave = {
+  octaveClass: string
+  keyData: {
+    keyStyle: string
+    keyButton: { name: string; code: number | null }
+    note: Note
+    sound: Sound | null
+  }[]
+}
+
+export type Keyboard = Octave[]

@@ -29,7 +29,13 @@ import { getOscType } from '@/hooks/getOscType'
         step="any"
         annotation="Stereo width"
       />
-      <SynthControlSlider name="transpose" :min="-2" :max="2" :step="1" annotation="Transpose" />
+      <SynthControlSlider
+        name="transposition"
+        :min="-2"
+        :max="2"
+        :step="1"
+        annotation="Transpose"
+      />
     </div>
     <div class="ADSR">
       <SynthControlSlider
@@ -91,7 +97,7 @@ import { getOscType } from '@/hooks/getOscType'
         annotation="Delay feedback"
       />
       <SynthControlSlider
-        name="masterVolume"
+        name="volume"
         :min="0"
         :max="1"
         :step="0.01"

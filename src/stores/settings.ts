@@ -1,4 +1,4 @@
-import { ref, computed, watch } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { type Settings, type oscType } from '@/types/types'
 import { getOscType, getOscSliderValue } from '@/hooks/getOscType'
@@ -17,50 +17,6 @@ export const useSettingsStore = defineStore('settings', () => {
   const delayTime = ref(0)
   const delayFeedback = ref(0)
 
-  const volumeAttackStepsNum = computed(() => {
-    if (attack.value < 0.1) {
-      return 1
-    } else {
-      return 10
-    }
-  })
-
-  const attackTimeStep = computed(() => {
-    return (attack.value * 1000) / volumeAttackStepsNum.value
-  })
-
-  const volumeReleaseStepsNum = computed(() => {
-    if (release.value < 0.1) {
-      return 1
-    } else {
-      return 10
-    }
-  })
-
-  const releaseTimeStep = computed(() => {
-    return (release.value * 1000) / volumeReleaseStepsNum.value
-  })
-
-  const volumeDecayStepsNum = computed(() => {
-    if (decay.value < 0.1) {
-      return 1
-    } else {
-      return 10
-    }
-  })
-
-  const decayTimeStep = computed(() => {
-    return (decay.value * 1000) / volumeDecayStepsNum.value
-  })
-
-  const decayLoudness = computed(() => {
-    return sustain.value * volume.value
-  })
-
-  const volumeStepDecay = computed(() => {
-    return (volume.value - decayLoudness.value) / volumeDecayStepsNum.value
-  })
-
   function setSettings(settings: Settings) {
     attack.value = settings.attack
     release.value = settings.release
@@ -74,6 +30,23 @@ export const useSettingsStore = defineStore('settings', () => {
     delayVolume.value = settings.delayVolume
     delayTime.value = settings.delayTime
     delayFeedback.value = settings.delayFeedback
+  }
+
+  function getSettings(): Settings {
+    return {
+      attack: attack.value,
+      release: release.value,
+      sustain: sustain.value,
+      decay: decay.value,
+      oscType: oscType.value,
+      volume: volume.value,
+      transposition: transposition.value,
+      filterFreq: filterFreq.value,
+      stereoWidth: stereoWidth.value,
+      delayVolume: delayVolume.value,
+      delayTime: delayTime.value,
+      delayFeedback: delayFeedback.value
+    }
   }
 
   function setSetting(key: string, value: number) {
@@ -147,16 +120,9 @@ export const useSettingsStore = defineStore('settings', () => {
     delayVolume,
     delayTime,
     delayFeedback,
-    volumeAttackStepsNum,
-    attackTimeStep,
-    volumeReleaseStepsNum,
-    releaseTimeStep,
-    volumeDecayStepsNum,
-    decayTimeStep,
-    decayLoudness,
-    volumeStepDecay,
     setSetting,
     setSettings,
-    getSetting
+    getSetting,
+    getSettings
   }
 })
