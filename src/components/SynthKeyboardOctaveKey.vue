@@ -1,15 +1,21 @@
 <script setup lang="ts">
-import { defineProps, reactive, watch } from 'vue'
+import { defineProps, reactive, watch, inject } from 'vue'
+import type { NoteId } from '@/types/types'
 import type { Sound } from '@/types/sound'
-import { useSettingsStore } from '@/stores/settings'
-const settingStore = useSettingsStore()
+import { useKeyboardStore } from '@/stores/keyboard'
 
 const props = defineProps<{
   keyStyle: string
   sound: Sound | null
-  button?: { name: string; code: string | null }
+  button: {
+    id: NoteId
+    name: string
+    code: number | null
+  }
   context: AudioContext | null
 }>()
+
+const { addNote, removeNote } = useKeyboardStore()
 
 const playEvents = reactive({ pointerdown: false, pointerover: false })
 
@@ -17,51 +23,20 @@ const stopEvents = reactive({ pointerup: false, pointerout: false })
 
 watch(playEvents, () => {
   if (playEvents.pointerdown && playEvents.pointerover) {
-    play()
+    addNote(props.button.id)
   }
 })
 
 watch(stopEvents, () => {
-  if (stopEvents.pointerup && stopEvents.pointerout) {
-    stop()
+  if (stopEvents.pointerup || stopEvents.pointerout) {
+    removeNote(props.button.id)
   }
 })
-
-function play() {
-  if (props.context && props.sound) {
-    props.sound.play(props.context)
-  }
-}
-
-function stop() {
-  if (props.context && props.sound) {
-    props.sound.stop()
-  }
-}
-
-function keyPress(event: any) {
-  console.log('event', event.keyCode)
-  console.log('prop', props.button?.code)
-  if (event.keyCode === props.button?.code) {
-    console.log('here we are')
-    play()
-  }
-}
-
-function keyRelease(event: any) {
-  // console.log(event.keyCode)
-  if (event.keyCode === props.button?.code) {
-    console.log('here we stop')
-    stop()
-  }
-}
 </script>
 
 <template>
   <button
     :class="`key ${keyStyle}`"
-    @keydown="keyPress"
-    @keyup="keyRelease"
     @pointerdown="
       () => {
         playEvents.pointerdown = true

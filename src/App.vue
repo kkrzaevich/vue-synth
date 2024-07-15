@@ -1,14 +1,35 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { getNoteIdFromKeyCode } from '@/hooks/getNoteIdFromKeyCode'
+import { onMounted, provide, ref } from 'vue'
 import SynthPresets from './components/SynthPresets.vue'
 import SynthKeyboard from './components/SynthKeyboard.vue'
 import SynthControls from './components/SynthControls.vue'
+import { useKeyboardStore } from '@/stores/keyboard'
 
-onMounted(() => {})
+const { addNote, removeNote } = useKeyboardStore()
+
+const keysPressed = ref<string[]>([])
+
+function keyPress(event: any) {
+  const noteId = getNoteIdFromKeyCode(event.keyCode)
+  if (!keysPressed.value.includes(event.keyCode) && noteId) {
+    keysPressed.value.push(event.keyCode)
+    addNote(noteId)
+  }
+}
+
+function keyRelease(event: any) {
+  const index = keysPressed.value.indexOf(event.keyCode)
+  keysPressed.value.splice(index, 1)
+  const noteId = getNoteIdFromKeyCode(event.keyCode)
+  if (noteId) {
+    removeNote(noteId)
+  }
+}
 </script>
 
 <template>
-  <main>
+  <main @keydown="keyPress" @keyup="keyRelease">
     <div class="synth">
       <SynthPresets />
       <SynthControls />

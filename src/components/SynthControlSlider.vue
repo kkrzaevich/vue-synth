@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref, computed, watch, onMounted } from 'vue'
+import { defineProps, ref, computed, onMounted } from 'vue'
 import { useSettingsStore } from '@/stores/settings'
 import { usePresetStore } from '@/stores/presets'
 

@@ -28,13 +28,23 @@ export class Preset {
 
 export type Note = 'C' | 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' | 'A#' | 'B'
 
+export type NoteId = {
+  note: number
+  octave: number
+}
+
 export type Octave = {
   octaveClass: string
   keyData: {
     keyStyle: string
-    keyButton: { name: string; code: number | null }
+    keyButton: {
+      id: NoteId
+      name: string
+      code: number | null
+    }
     note: Note
     sound: Sound | null
+    playing: boolean
   }[]
 }
 
