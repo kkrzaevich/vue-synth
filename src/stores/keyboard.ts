@@ -451,23 +451,28 @@ export const useKeyboardStore = defineStore('keyboard', () => {
 
   const playList = ref<NoteId[]>([])
 
-  function addNote(NoteId: NoteId) {
+  function addNote(noteId: NoteId) {
     const newArray = [...playList.value]
-    if (!newArray.includes(NoteId)) {
-      newArray.push(NoteId)
+    const flatArray = newArray.map((note) => `${note.note}_${note.octave}`)
+    if (!flatArray.includes(`${noteId.note}_${noteId.octave}`)) {
+      newArray.push(noteId)
     }
     playList.value = [...newArray]
   }
 
-  function removeNote(NoteId: NoteId) {
+  function removeNote(noteId: NoteId) {
     const newArray = [...playList.value]
-    const index = newArray.indexOf(NoteId)
-    newArray.splice(index, 1)
-    playList.value = [...newArray]
+    const flatArray = newArray.map((note) => `${note.note}_${note.octave}`)
+    if (flatArray.includes(`${noteId.note}_${noteId.octave}`)) {
+      const index = newArray.indexOf(noteId)
+      newArray.splice(index, 1)
+      playList.value = [...newArray]
+      console.log(`Note ${noteId.note} from octave ${noteId.octave} removed`)
+      console.log([...playList.value])
+    }
   }
 
   watch(playList, (newPlayList, oldPlayList) => {
-    console.log(playList.value)
     newPlayList.forEach((note) => {
       if (
         context.value !== null &&

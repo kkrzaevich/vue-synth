@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, provide, ref } from 'vue'
 import SynthKeyboardOctave from './SynthKeyboardOctave.vue'
 import { useKeyboardStore } from '@/stores/keyboard'
 
@@ -9,6 +9,15 @@ const { setSounds, createContext } = useKeyboardStore()
 const keyboardStore = useKeyboardStore()
 
 const { keyboard, context } = storeToRefs(keyboardStore)
+
+const pointerdown = ref(false)
+
+const pointerup = ref(false)
+
+provide('pointEvents', {
+  pointerdown,
+  pointerup
+})
 
 onBeforeMount(() => {
   setSounds()
@@ -22,6 +31,18 @@ onBeforeMount(() => {
       :key="octave.octaveClass"
       :octave="octave"
       :context="context"
+      @pointerdown="
+        () => {
+          pointerdown = true
+          pointerup = false
+        }
+      "
+      @pointerup="
+        () => {
+          pointerup = true
+          pointerdown = false
+        }
+      "
     />
   </div>
 </template>

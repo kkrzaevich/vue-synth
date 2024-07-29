@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, reactive, watch, inject } from 'vue'
+import { defineProps, ref, watch, inject } from 'vue'
 import type { NoteId } from '@/types/types'
 import type { Sound } from '@/types/sound'
 import { useKeyboardStore } from '@/stores/keyboard'
@@ -17,18 +17,33 @@ const props = defineProps<{
 
 const { addNote, removeNote } = useKeyboardStore()
 
-const playEvents = reactive({ pointerdown: false, pointerover: false })
+// @ts-ignore
+const { pointerdown, pointerup } = inject('pointEvents')
 
-const stopEvents = reactive({ pointerup: false, pointerout: false })
+const pointerover = ref<boolean | null>(null)
 
-watch(playEvents, () => {
-  if (playEvents.pointerdown && playEvents.pointerover) {
+const pointerout = ref<boolean | null>(null)
+
+watch(pointerover, () => {
+  if (pointerdown.value && pointerover.value) {
     addNote(props.button.id)
   }
 })
 
-watch(stopEvents, () => {
-  if (stopEvents.pointerup || stopEvents.pointerout) {
+watch(pointerdown, () => {
+  if (pointerdown.value && pointerover.value) {
+    addNote(props.button.id)
+  }
+})
+
+watch(pointerout, () => {
+  if ((pointerup.value && pointerover.value) || (pointerdown.value && pointerout.value)) {
+    removeNote(props.button.id)
+  }
+})
+
+watch(pointerup, () => {
+  if ((pointerup.value && pointerover.value) || (pointerdown.value && pointerout.value)) {
     removeNote(props.button.id)
   }
 })
@@ -37,28 +52,20 @@ watch(stopEvents, () => {
 <template>
   <button
     :class="`key ${keyStyle}`"
-    @pointerdown="
-      () => {
-        playEvents.pointerdown = true
-        stopEvents.pointerup = false
-      }
-    "
     @pointerover="
       () => {
-        playEvents.pointerover = true
-        stopEvents.pointerout = false
-      }
-    "
-    @pointerup="
-      () => {
-        stopEvents.pointerup = true
-        playEvents.pointerdown = false
+        pointerover = true
+        pointerout = false
+        // console.log('pointerdown', pointerdown.value)
+        // console.log('pointerup', pointerup.value)
       }
     "
     @pointerout="
       () => {
-        stopEvents.pointerout = true
-        playEvents.pointerover = false
+        pointerout = true
+        pointerover = false
+        // console.log('pointerdown', pointerdown.value)
+        // console.log('pointerup', pointerup.value)
       }
     "
   >

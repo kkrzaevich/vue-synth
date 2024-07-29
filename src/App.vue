@@ -22,6 +22,7 @@ function keyRelease(event: any) {
   const index = keysPressed.value.indexOf(event.keyCode)
   keysPressed.value.splice(index, 1)
   const noteId = getNoteIdFromKeyCode(event.keyCode)
+  console.log('released key', noteId)
   if (noteId) {
     removeNote(noteId)
   }
