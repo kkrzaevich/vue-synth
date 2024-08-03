@@ -1,5 +1,5 @@
 import { defineStore, storeToRefs } from 'pinia'
-import { watch, onBeforeMount, ref } from 'vue'
+import { watch, ref } from 'vue'
 import { defineNoteFrequency } from '@/hooks/defineNoteFrequency'
 import type { Keyboard, NoteId } from '@/types/types'
 import { Sound } from '@/types/sound'
@@ -520,45 +520,6 @@ export const useKeyboardStore = defineStore('keyboard', () => {
       return
     }
   }
-
-  // function addNote(noteId: NoteId) {
-  //   const newArray = [...playList.value]
-  //   const flatArray = newArray.map((note) => `${note.note}_${note.octave}`)
-  //   if (!flatArray.includes(`${noteId.note}_${noteId.octave}`)) {
-  //     newArray.push(noteId)
-  //   }
-  //   playList.value = [...newArray]
-  // }
-
-  // function removeNote(noteId: NoteId) {
-  //   const newArray = [...playList.value]
-  //   const flatArray = newArray.map((note) => `${note.note}_${note.octave}`)
-  //   if (flatArray.includes(`${noteId.note}_${noteId.octave}`)) {
-  //     const index = newArray.indexOf(noteId)
-  //     newArray.splice(index, 1)
-  //     playList.value = [...newArray]
-  //     console.log(`Note ${noteId.note} from octave ${noteId.octave} removed`)
-  //     console.log([...playList.value])
-  //   }
-  // }
-
-  // watch(playList, (newPlayList, oldPlayList) => {
-  //   newPlayList.forEach((note) => {
-  //     if (
-  //       context.value !== null &&
-  //       keyboard.value[note.octave].keyData[note.note].playing === false
-  //     ) {
-  //       keyboard.value[note.octave].keyData[note.note].sound?.play(context.value)
-  //       keyboard.value[note.octave].keyData[note.note].playing = true
-  //     }
-  //   })
-  //   oldPlayList.forEach((note) => {
-  //     if (!newPlayList.includes(note)) {
-  //       keyboard.value[note.octave].keyData[note.note].sound?.stop()
-  //       keyboard.value[note.octave].keyData[note.note].playing = false
-  //     }
-  //   })
-  // })
 
   return {
     keyboard,

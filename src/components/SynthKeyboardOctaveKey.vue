@@ -18,7 +18,7 @@ const props = defineProps<{
 const { changeMouseInput } = useKeyboardStore()
 
 // @ts-ignore
-const { pointerdownGlobal, pointerupGlobal } = inject('pointEvents')
+const { pointerdownGlobal } = inject('pointEvents')
 
 const pointerover = ref<boolean | null>(null)
 
@@ -41,12 +41,6 @@ watch(pointerout, () => {
     changeMouseInput(props.button.id, false)
   }
 })
-
-// watch(pointerup, () => {
-//   if ((pointerup.value && pointerover.value) || (pointerdown.value && pointerout.value)) {
-//     removeNote(props.button.id)
-//   }
-// })
 </script>
 
 <template>
@@ -56,16 +50,12 @@ watch(pointerout, () => {
       () => {
         pointerover = true
         pointerout = false
-        // console.log('pointerdown', pointerdown.value)
-        // console.log('pointerup', pointerup.value)
       }
     "
     @pointerout="
       () => {
         pointerout = true
         pointerover = false
-        // console.log('pointerdown', pointerdown.value)
-        // console.log('pointerup', pointerup.value)
       }
     "
     @pointerdown="
