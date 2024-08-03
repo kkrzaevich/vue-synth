@@ -516,7 +516,6 @@ export const useKeyboardStore = defineStore('keyboard', () => {
     }
     if ((mouseInput || keyboardInput) && context.value !== null) {
       keyboard.value[noteId.octave].keyData[noteId.note].sound?.play(context.value)
-      console.log('running checkInputStatus')
       return
     }
   }
@@ -524,7 +523,6 @@ export const useKeyboardStore = defineStore('keyboard', () => {
   return {
     keyboard,
     context,
-    // playList,
     changeKeyboardInput,
     changeMouseInput,
     setSounds,

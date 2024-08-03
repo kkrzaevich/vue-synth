@@ -12,6 +12,7 @@ const props = defineProps<{
     name: string
     code: number | null
   }
+  active: boolean
   context: AudioContext | null
 }>()
 
@@ -45,7 +46,7 @@ watch(pointerout, () => {
 
 <template>
   <button
-    :class="`key ${keyStyle}`"
+    :class="`key ${keyStyle} ${active ? 'active' : ''}`"
     @pointerover="
       () => {
         pointerover = true
@@ -160,5 +161,9 @@ watch(pointerout, () => {
 .b-key {
   grid-column-start: 16;
   grid-column-end: 18;
+}
+
+.active {
+  background-color: #ff597b;
 }
 </style>

@@ -37,6 +37,9 @@ const presetStore = usePresetStore()
   grid-template-columns: 1fr 3fr 1fr;
 
   text-align: center;
+
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .presets button {

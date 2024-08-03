@@ -46,29 +46,60 @@ onMounted(() => {
 
 <template>
   <p>{{ annotation }}</p>
-  <v-slider
-    :id="name"
-    :name="name"
-    :min="min"
-    v-model="sliderValue"
-    @end="setStoreValue"
-    value="0"
-    :max="max"
-    :step="step"
-    width="50%"
-  />
-
-  <label for="oscType">{{
-    values ? sliderValueComputed : Number(sliderValue).toFixed(rounding)
-  }}</label>
+  <div class="control-box">
+    <v-slider
+      :id="name"
+      :name="name"
+      :min="min"
+      v-model="sliderValue"
+      @end="setStoreValue"
+      value="0"
+      class="slider"
+      :max="max"
+      :step="step"
+      width="80%"
+      min-width="80%"
+      density="compact"
+    >
+      <!-- <template v-slot:append>
+        {{ values ? sliderValueComputed : Number(sliderValue).toFixed(rounding) }}
+      </template> -->
+    </v-slider>
+    <label for="oscType" class="label">{{
+      values ? sliderValueComputed : Number(sliderValue).toFixed(rounding)
+    }}</label>
+  </div>
 </template>
 
 <style scoped lang="scss">
 /* Для планшетов */
 
-@media (max-width: 1149px) {
-  в label {
+.label {
+  text-align: left;
+}
+
+@media (max-width: 909px) {
+  label {
     display: block;
+  }
+
+  .control-box {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr 1fr;
+    padding-bottom: 10px;
+  }
+
+  .slider {
+    max-height: 30px;
+  }
+}
+
+@media (min-width: 910px) {
+  .control-box {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 80px;
   }
 }
 </style>

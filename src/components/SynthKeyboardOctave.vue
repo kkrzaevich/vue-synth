@@ -19,6 +19,7 @@ const props = defineProps<{
       :button="key.keyButton"
       :sound="key.sound"
       :context="context"
+      :active="key.keyboardInput || key.mouseInput ? true : false"
     />
   </div>
 </template>
