@@ -15,38 +15,38 @@ const props = defineProps<{
   context: AudioContext | null
 }>()
 
-const { addNote, removeNote } = useKeyboardStore()
+const { changeMouseInput } = useKeyboardStore()
 
 // @ts-ignore
-const { pointerdown, pointerup } = inject('pointEvents')
+const { pointerdownGlobal, pointerupGlobal } = inject('pointEvents')
 
 const pointerover = ref<boolean | null>(null)
 
 const pointerout = ref<boolean | null>(null)
 
 watch(pointerover, () => {
-  if (pointerdown.value && pointerover.value) {
-    addNote(props.button.id)
+  if (pointerdownGlobal.value && pointerover.value) {
+    changeMouseInput(props.button.id, true)
   }
 })
 
-watch(pointerdown, () => {
-  if (pointerdown.value && pointerover.value) {
-    addNote(props.button.id)
-  }
-})
+// watch(pointerdown, () => {
+//   if (pointerdown.value && pointerover.value) {
+//     addNote(props.button.id)
+//   }
+// })
 
 watch(pointerout, () => {
-  if ((pointerup.value && pointerover.value) || (pointerdown.value && pointerout.value)) {
-    removeNote(props.button.id)
+  if (pointerdownGlobal.value && pointerout.value) {
+    changeMouseInput(props.button.id, false)
   }
 })
 
-watch(pointerup, () => {
-  if ((pointerup.value && pointerover.value) || (pointerdown.value && pointerout.value)) {
-    removeNote(props.button.id)
-  }
-})
+// watch(pointerup, () => {
+//   if ((pointerup.value && pointerover.value) || (pointerdown.value && pointerout.value)) {
+//     removeNote(props.button.id)
+//   }
+// })
 </script>
 
 <template>
@@ -66,6 +66,16 @@ watch(pointerup, () => {
         pointerover = false
         // console.log('pointerdown', pointerdown.value)
         // console.log('pointerup', pointerup.value)
+      }
+    "
+    @pointerdown="
+      () => {
+        changeMouseInput(props.button.id, true)
+      }
+    "
+    @pointerup="
+      () => {
+        changeMouseInput(props.button.id, false)
       }
     "
   >

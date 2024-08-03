@@ -23,84 +23,96 @@ export const useKeyboardStore = defineStore('keyboard', () => {
           keyButton: { id: { note: 0, octave: 0 }, name: '', code: null },
           note: 'C',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black csh-key',
           keyButton: { id: { note: 1, octave: 0 }, name: '', code: null },
           note: 'C#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white d-key',
           keyButton: { id: { note: 2, octave: 0 }, name: '', code: null },
           note: 'D',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black dsh-key',
           keyButton: { id: { note: 3, octave: 0 }, name: '', code: null },
           note: 'D#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white e-key',
           keyButton: { id: { note: 4, octave: 0 }, name: '', code: null },
           note: 'E',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white f-key',
           keyButton: { id: { note: 5, octave: 0 }, name: '', code: null },
           note: 'F',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black fsh-key',
           keyButton: { id: { note: 6, octave: 0 }, name: '', code: null },
           note: 'F#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white g-key',
           keyButton: { id: { note: 7, octave: 0 }, name: '', code: null },
           note: 'G',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black gsh-key',
           keyButton: { id: { note: 8, octave: 0 }, name: '', code: null },
           note: 'G#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white a-key',
           keyButton: { id: { note: 9, octave: 0 }, name: '', code: null },
           note: 'A',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black ash-key',
           keyButton: { id: { note: 10, octave: 0 }, name: '', code: null },
           note: 'A#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white b-key',
           keyButton: { id: { note: 11, octave: 0 }, name: '', code: null },
           note: 'B',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         }
       ]
     },
@@ -112,84 +124,96 @@ export const useKeyboardStore = defineStore('keyboard', () => {
           keyButton: { id: { note: 0, octave: 1 }, name: 'Z', code: 90 },
           note: 'C',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black csh-key',
           keyButton: { id: { note: 1, octave: 1 }, name: 'S', code: 83 },
           note: 'C#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white d-key',
           keyButton: { id: { note: 2, octave: 1 }, name: 'X', code: 88 },
           note: 'D',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black dsh-key',
           keyButton: { id: { note: 3, octave: 1 }, name: 'D', code: 68 },
           note: 'D#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white e-key',
           keyButton: { id: { note: 4, octave: 1 }, name: 'C', code: 67 },
           note: 'E',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white f-key',
           keyButton: { id: { note: 5, octave: 1 }, name: 'V', code: 86 },
           note: 'F',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black fsh-key',
           keyButton: { id: { note: 6, octave: 1 }, name: 'G', code: 71 },
           note: 'F#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white g-key',
           keyButton: { id: { note: 7, octave: 1 }, name: 'B', code: 66 },
           note: 'G',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black gsh-key',
           keyButton: { id: { note: 8, octave: 1 }, name: 'H', code: 72 },
           note: 'G#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white a-key',
           keyButton: { id: { note: 9, octave: 1 }, name: 'N', code: 78 },
           note: 'A',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black ash-key',
           keyButton: { id: { note: 10, octave: 1 }, name: 'J', code: 74 },
           note: 'A#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white b-key',
           keyButton: { id: { note: 11, octave: 1 }, name: 'M', code: 77 },
           note: 'B',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         }
       ]
     },
@@ -201,84 +225,96 @@ export const useKeyboardStore = defineStore('keyboard', () => {
           keyButton: { id: { note: 0, octave: 2 }, name: 'Q', code: 81 },
           note: 'C',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black csh-key',
           keyButton: { id: { note: 1, octave: 2 }, name: '2', code: 50 },
           note: 'C#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white d-key',
           keyButton: { id: { note: 2, octave: 2 }, name: 'W', code: 87 },
           note: 'D',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black dsh-key',
           keyButton: { id: { note: 3, octave: 2 }, name: '3', code: 51 },
           note: 'D#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white e-key',
           keyButton: { id: { note: 4, octave: 2 }, name: 'E', code: 69 },
           note: 'E',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white f-key',
           keyButton: { id: { note: 5, octave: 2 }, name: 'R', code: 82 },
           note: 'F',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black fsh-key',
           keyButton: { id: { note: 6, octave: 2 }, name: '5', code: 53 },
           note: 'F#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white g-key',
           keyButton: { id: { note: 7, octave: 2 }, name: 'T', code: 84 },
           note: 'G',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black gsh-key',
           keyButton: { id: { note: 8, octave: 2 }, name: '6', code: 54 },
           note: 'G#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white a-key',
           keyButton: { id: { note: 9, octave: 2 }, name: 'Y', code: 89 },
           note: 'A',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black ash-key',
           keyButton: { id: { note: 10, octave: 2 }, name: '7', code: 55 },
           note: 'A#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white b-key',
           keyButton: { id: { note: 11, octave: 2 }, name: 'U', code: 85 },
           note: 'B',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         }
       ]
     },
@@ -290,84 +326,96 @@ export const useKeyboardStore = defineStore('keyboard', () => {
           keyButton: { id: { note: 0, octave: 3 }, name: 'I', code: 73 },
           note: 'C',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black csh-key',
           keyButton: { id: { note: 1, octave: 3 }, name: '9', code: 57 },
           note: 'C#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white d-key',
           keyButton: { id: { note: 2, octave: 3 }, name: 'O', code: 79 },
           note: 'D',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black dsh-key',
           keyButton: { id: { note: 3, octave: 3 }, name: '0', code: 48 },
           note: 'D#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white e-key',
           keyButton: { id: { note: 4, octave: 3 }, name: 'P', code: 80 },
           note: 'E',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white f-key',
           keyButton: { id: { note: 5, octave: 3 }, name: '', code: null },
           note: 'F',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black fsh-key',
           keyButton: { id: { note: 6, octave: 3 }, name: '', code: null },
           note: 'F#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white g-key',
           keyButton: { id: { note: 7, octave: 3 }, name: '', code: null },
           note: 'G',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black gsh-key',
           keyButton: { id: { note: 8, octave: 3 }, name: '', code: null },
           note: 'G#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white a-key',
           keyButton: { id: { note: 9, octave: 3 }, name: '', code: null },
           note: 'A',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-black ash-key',
           keyButton: { id: { note: 10, octave: 3 }, name: '', code: null },
           note: 'A#',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         },
         {
           keyStyle: 'key-white b-key',
           keyButton: { id: { note: 11, octave: 3 }, name: '', code: null },
           note: 'B',
           sound: null,
-          playing: false
+          keyboardInput: false,
+          mouseInput: false
         }
       ]
     }
@@ -449,53 +497,75 @@ export const useKeyboardStore = defineStore('keyboard', () => {
     changeFrequencies()
   })
 
-  const playList = ref<NoteId[]>([])
-
-  function addNote(noteId: NoteId) {
-    const newArray = [...playList.value]
-    const flatArray = newArray.map((note) => `${note.note}_${note.octave}`)
-    if (!flatArray.includes(`${noteId.note}_${noteId.octave}`)) {
-      newArray.push(noteId)
-    }
-    playList.value = [...newArray]
+  function changeKeyboardInput(noteId: NoteId, inputStatus: boolean) {
+    keyboard.value[noteId.octave].keyData[noteId.note].keyboardInput = inputStatus
+    checkInputStatus(noteId)
   }
 
-  function removeNote(noteId: NoteId) {
-    const newArray = [...playList.value]
-    const flatArray = newArray.map((note) => `${note.note}_${note.octave}`)
-    if (flatArray.includes(`${noteId.note}_${noteId.octave}`)) {
-      const index = newArray.indexOf(noteId)
-      newArray.splice(index, 1)
-      playList.value = [...newArray]
-      console.log(`Note ${noteId.note} from octave ${noteId.octave} removed`)
-      console.log([...playList.value])
+  function changeMouseInput(noteId: NoteId, inputStatus: boolean) {
+    keyboard.value[noteId.octave].keyData[noteId.note].mouseInput = inputStatus
+    checkInputStatus(noteId)
+  }
+
+  const checkInputStatus = (noteId: NoteId) => {
+    const mouseInput = keyboard.value[noteId.octave].keyData[noteId.note].mouseInput
+    const keyboardInput = keyboard.value[noteId.octave].keyData[noteId.note].keyboardInput
+    if (!mouseInput && !keyboardInput) {
+      keyboard.value[noteId.octave].keyData[noteId.note].sound?.stop()
+      return
+    }
+    if ((mouseInput || keyboardInput) && context.value !== null) {
+      keyboard.value[noteId.octave].keyData[noteId.note].sound?.play(context.value)
+      console.log('running checkInputStatus')
+      return
     }
   }
 
-  watch(playList, (newPlayList, oldPlayList) => {
-    newPlayList.forEach((note) => {
-      if (
-        context.value !== null &&
-        keyboard.value[note.octave].keyData[note.note].playing === false
-      ) {
-        keyboard.value[note.octave].keyData[note.note].sound?.play(context.value)
-        keyboard.value[note.octave].keyData[note.note].playing = true
-      }
-    })
-    oldPlayList.forEach((note) => {
-      if (!newPlayList.includes(note)) {
-        keyboard.value[note.octave].keyData[note.note].sound?.stop()
-        keyboard.value[note.octave].keyData[note.note].playing = false
-      }
-    })
-  })
+  // function addNote(noteId: NoteId) {
+  //   const newArray = [...playList.value]
+  //   const flatArray = newArray.map((note) => `${note.note}_${note.octave}`)
+  //   if (!flatArray.includes(`${noteId.note}_${noteId.octave}`)) {
+  //     newArray.push(noteId)
+  //   }
+  //   playList.value = [...newArray]
+  // }
+
+  // function removeNote(noteId: NoteId) {
+  //   const newArray = [...playList.value]
+  //   const flatArray = newArray.map((note) => `${note.note}_${note.octave}`)
+  //   if (flatArray.includes(`${noteId.note}_${noteId.octave}`)) {
+  //     const index = newArray.indexOf(noteId)
+  //     newArray.splice(index, 1)
+  //     playList.value = [...newArray]
+  //     console.log(`Note ${noteId.note} from octave ${noteId.octave} removed`)
+  //     console.log([...playList.value])
+  //   }
+  // }
+
+  // watch(playList, (newPlayList, oldPlayList) => {
+  //   newPlayList.forEach((note) => {
+  //     if (
+  //       context.value !== null &&
+  //       keyboard.value[note.octave].keyData[note.note].playing === false
+  //     ) {
+  //       keyboard.value[note.octave].keyData[note.note].sound?.play(context.value)
+  //       keyboard.value[note.octave].keyData[note.note].playing = true
+  //     }
+  //   })
+  //   oldPlayList.forEach((note) => {
+  //     if (!newPlayList.includes(note)) {
+  //       keyboard.value[note.octave].keyData[note.note].sound?.stop()
+  //       keyboard.value[note.octave].keyData[note.note].playing = false
+  //     }
+  //   })
+  // })
 
   return {
     keyboard,
     context,
-    playList,
-    addNote,
-    removeNote,
+    // playList,
+    changeKeyboardInput,
+    changeMouseInput,
     setSounds,
     createContext
   }

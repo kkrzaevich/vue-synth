@@ -10,13 +10,13 @@ const keyboardStore = useKeyboardStore()
 
 const { keyboard, context } = storeToRefs(keyboardStore)
 
-const pointerdown = ref(false)
+const pointerdownGlobal = ref(false)
 
-const pointerup = ref(false)
+const pointerupGlobal = ref(false)
 
 provide('pointEvents', {
-  pointerdown,
-  pointerup
+  pointerdownGlobal,
+  pointerupGlobal
 })
 
 onBeforeMount(() => {
@@ -33,14 +33,14 @@ onBeforeMount(() => {
       :context="context"
       @pointerdown="
         () => {
-          pointerdown = true
-          pointerup = false
+          pointerdownGlobal = true
+          pointerupGlobal = false
         }
       "
       @pointerup="
         () => {
-          pointerup = true
-          pointerdown = false
+          pointerupGlobal = true
+          pointerdownGlobal = false
         }
       "
     />

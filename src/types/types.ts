@@ -44,7 +44,8 @@ export type Octave = {
     }
     note: Note
     sound: Sound | null
-    playing: boolean
+    keyboardInput: boolean
+    mouseInput: boolean
   }[]
 }
 

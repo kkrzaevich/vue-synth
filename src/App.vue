@@ -6,7 +6,7 @@ import SynthKeyboard from './components/SynthKeyboard.vue'
 import SynthControls from './components/SynthControls.vue'
 import { useKeyboardStore } from '@/stores/keyboard'
 
-const { addNote, removeNote } = useKeyboardStore()
+const { changeKeyboardInput } = useKeyboardStore()
 
 const keysPressed = ref<string[]>([])
 
@@ -14,7 +14,7 @@ function keyPress(event: any) {
   const noteId = getNoteIdFromKeyCode(event.keyCode)
   if (!keysPressed.value.includes(event.keyCode) && noteId) {
     keysPressed.value.push(event.keyCode)
-    addNote(noteId)
+    changeKeyboardInput(noteId, true)
   }
 }
 
@@ -22,9 +22,8 @@ function keyRelease(event: any) {
   const index = keysPressed.value.indexOf(event.keyCode)
   keysPressed.value.splice(index, 1)
   const noteId = getNoteIdFromKeyCode(event.keyCode)
-  console.log('released key', noteId)
   if (noteId) {
-    removeNote(noteId)
+    changeKeyboardInput(noteId, false)
   }
 }
 </script>
