@@ -4,6 +4,7 @@ import { onMounted, provide, ref } from 'vue'
 import SynthPresets from './components/SynthPresets.vue'
 import SynthKeyboard from './components/SynthKeyboard.vue'
 import SynthControls from './components/SynthControls.vue'
+import SynthNavbar from './components/SynthNavbar.vue'
 import { useKeyboardStore } from '@/stores/keyboard'
 
 const { changeKeyboardInput } = useKeyboardStore()
@@ -30,11 +31,12 @@ function keyRelease(event: any) {
 
 <template>
   <main @keydown="keyPress" @keyup="keyRelease">
-    <div class="synth">
+    <v-card class="synth" variant="elevated" elevation="10">
       <SynthPresets />
       <SynthControls />
       <SynthKeyboard />
-    </div>
+    </v-card>
+    <SynthNavbar />
   </main>
 </template>
 
@@ -44,6 +46,11 @@ main {
   color: black;
   background-color: white;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
 }
 
 .synth {
@@ -51,15 +58,11 @@ main {
   grid-template-rows: auto;
   /* grid-template-columns: 80px 380px 380px 380px 80px;
   width: 1300px; */
+  border-radius: 0px;
+  width: 100%;
 
-  border: 2px solid black;
-  border-radius: 6px;
-
-  background-color: white;
-
-  margin: auto;
-
-  box-shadow: 0px 0px 200px 0px rgb(252, 252, 252);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* Для широких экранов */

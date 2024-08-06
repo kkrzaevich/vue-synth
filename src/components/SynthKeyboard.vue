@@ -56,8 +56,6 @@ onBeforeMount(() => {
 @media (min-width: 1300px) {
   .keyboard {
     display: flex;
-    border: 2px solid black;
-    border-radius: 3px;
     background-color: #f8f0df;
   }
 }
@@ -67,8 +65,6 @@ onBeforeMount(() => {
 @media (max-width: 1299px) {
   .keyboard {
     display: flex;
-    border: 2px solid black;
-    border-radius: 3px;
     background-color: #f8f0df;
   }
 }

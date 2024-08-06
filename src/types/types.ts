@@ -49,4 +49,16 @@ export type Octave = {
   }[]
 }
 
+export type userCredentials = {
+  email: string
+  password: string
+  username: string
+}
+
+export type userData = {
+  id: string
+  email: string
+  username: string
+}
+
 export type Keyboard = Octave[]

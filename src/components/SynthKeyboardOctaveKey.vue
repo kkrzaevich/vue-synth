@@ -45,7 +45,7 @@ watch(pointerout, () => {
 </script>
 
 <template>
-  <button
+  <v-btn
     :class="`key ${keyStyle} ${active ? 'active' : ''}`"
     @pointerover="
       () => {
@@ -71,13 +71,12 @@ watch(pointerout, () => {
     "
   >
     {{ button?.name }}
-  </button>
+  </v-btn>
 </template>
 
 <style scoped lang="scss">
 .key-white {
-  border-radius: 3px;
-  border: 1px solid black;
+  border-radius: 0px;
   text-align: center;
   z-index: 1;
   grid-row: 1;
@@ -87,11 +86,14 @@ watch(pointerout, () => {
   color: black;
   font-family: 'Noto Sans', sans-serif;
   transition: background-color 0.2s;
+  min-width: unset;
+  padding: unset;
+  width: 100%;
+  height: 100%;
 }
 
 .key-black {
-  border-radius: 3px;
-  border: 1px solid black;
+  border-radius: 0px;
   text-align: center;
   z-index: 2;
   grid-row: 1;
@@ -101,6 +103,10 @@ watch(pointerout, () => {
   color: black;
   font-family: 'Noto Sans', sans-serif;
   transition: background-color 0.2s;
+  min-width: unset;
+  padding: unset;
+  width: 100%;
+  height: 100%;
 }
 
 .c-key {

@@ -8,21 +8,22 @@ const presetStore = usePresetStore()
 </script>
 
 <template>
-  <div class="presets">
-    <div class="arrow-left">
-      <button id="arrow-left" @click="presetStore.prevPreset">
-        <i class="pi pi-arrow-left"></i>
-      </button>
-    </div>
-    <div class="preset">
-      <p id="preset-field">{{ presetStore.currentPreset.name }}</p>
-    </div>
-    <div class="arrow-right">
-      <button id="arrow-right">
-        <i class="pi pi-arrow-right" @click="presetStore.nextPreset"></i>
-      </button>
-    </div>
-  </div>
+  <v-hover v-slot="{ isHovering, props }">
+    <v-card class="presets" :elevation="isHovering ? 8 : 0" v-bind="props">
+      <div class="arrow-left">
+        <button id="arrow-left" @click="presetStore.prevPreset">
+          <v-icon icon="mdi-less-than" size="medium"></v-icon>
+        </button>
+      </div>
+      <div class="preset">
+        <p id="preset-field">{{ presetStore.currentPreset.name }}</p>
+      </div>
+      <div class="arrow-right">
+        <button id="arrow-right" @click="presetStore.nextPreset">
+          <v-icon icon="mdi-greater-than" size="medium"></v-icon>
+        </button>
+      </div> </v-card
+  ></v-hover>
 </template>
 
 <style scoped lang="scss">
@@ -38,8 +39,13 @@ const presetStore = usePresetStore()
 
   text-align: center;
 
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+
+  margin-top: 0.75rem;
+  margin-bottom: 1.5rem;
+
+  border-radius: 0px;
 }
 
 .presets button {
@@ -51,7 +57,7 @@ const presetStore = usePresetStore()
 }
 
 .presets button:hover {
-  color: rgb(55, 147, 255);
+  color: #ff597b;
 }
 
 .presets button:active {
