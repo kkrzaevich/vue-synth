@@ -24,7 +24,7 @@ async function logout() {
         v-if="!user"
         class="text-none"
         variant="elevated"
-        :elevation="isHovering ? 12 : 2"
+        :elevation="isHovering ? 10 : 0"
         v-bind="props"
         @click="loginDialog = true"
         >Login</v-btn
@@ -35,7 +35,7 @@ async function logout() {
         v-if="!user"
         class="text-none"
         variant="elevated"
-        :elevation="isHovering ? 12 : 2"
+        :elevation="isHovering ? 10 : 0"
         v-bind="props"
         @click="signupDialog = true"
         >Sign Up</v-btn

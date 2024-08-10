@@ -5,19 +5,23 @@ import { useUserStore } from '@/stores/users'
 
 const { handleLogin } = useUserStore()
 
-const { loading } = storeToRefs(useUserStore())
+const { loading, errorMessage } = storeToRefs(useUserStore())
 
 const showModal = defineModel<boolean>()
 
 function closeModal() {
   showModal.value = false
+  errorMessage.value = ''
 }
 
 async function submit() {
-  await handleLogin(email.value, password.value)
-
-  showModal.value = false
+  const res = await handleLogin(email.value, password.value)
+  if (res) {
+    closeModal()
+  }
 }
+
+const formIsValid = ref(false)
 
 // Login dialogue
 
@@ -47,27 +51,35 @@ const passwordRules = ref([
 
 <template>
   <main>
-    <v-dialog v-model="showModal" width="auto">
+    <v-dialog v-model="showModal" width="auto" @afterLeave="closeModal">
       <v-card
         max-width="400"
         min-width="400"
-        prepend-icon="mdi-update"
         title="Log In"
         class="card"
+        rounded="0"
         :loading="loading"
       >
-        <v-form @submit.prevent="submit">
-          <v-text-field v-model="email" :rules="emailRules" label="E-mail"></v-text-field>
+        <v-form @submit.prevent="submit" v-model="formIsValid">
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="E-mail"
+            rounded="0"
+          ></v-text-field>
 
           <v-text-field
             type="password"
             v-model="password"
             :rules="passwordRules"
             label="Password"
+            rounded="0"
           ></v-text-field>
-
-          <v-btn class="mt-2" type="submit" block>Submit</v-btn>
-          <v-btn class="mt-2" @click="closeModal" block>Cancel</v-btn>
+          <p class="error-message">{{ errorMessage }}</p>
+          <v-btn class="mt-2" :type="formIsValid ? 'submit' : 'button'" block rounded="0"
+            >Enter</v-btn
+          >
+          <v-btn class="mt-2" @click="closeModal" block rounded="0">Cancel</v-btn>
         </v-form>
       </v-card>
     </v-dialog>
@@ -76,17 +88,16 @@ const passwordRules = ref([
 
 <style scoped lang="scss">
 .card {
-  padding: 1rem;
-}
+  font-family: 'Noto Sans', sans-serif;
 
-.navbar {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-direction: row;
-  padding: 10px;
+  padding: 1rem;
+
+  .error-message {
+    color: rgb(176, 0, 32);
+  }
 
   button {
+    text-transform: unset;
     font-size: 1rem;
   }
 }
