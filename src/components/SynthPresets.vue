@@ -5,6 +5,8 @@ import { presetTable } from '@/data/presetData'
 import { usePresetStore } from '@/stores/presets'
 
 const presetStore = usePresetStore()
+
+const items = ref(['a', 'b', 'c', 'd'])
 </script>
 
 <template>
@@ -16,7 +18,21 @@ const presetStore = usePresetStore()
         </button>
       </div>
       <div class="preset">
-        <p id="preset-field">{{ presetStore.currentPreset.name }}</p>
+        <div class="text-center">
+          <v-menu>
+            <template v-slot:activator="{ props }">
+              <button id="preset-field" v-bind="props">
+                {{ presetStore.currentPreset.name }}
+              </button>
+            </template>
+
+            <v-list>
+              <v-list-item v-for="(item, index) in items" :key="index">
+                <v-list-item-title>{{ item }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
       </div>
       <div class="arrow-right">
         <button id="arrow-right" @click="presetStore.nextPreset">
