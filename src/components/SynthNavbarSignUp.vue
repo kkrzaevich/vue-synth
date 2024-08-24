@@ -20,7 +20,7 @@ async function submit() {
     username: username.value
   })
 
-  if (res) {
+  if (res.username) {
     closeModal()
   }
 }

@@ -18,11 +18,15 @@ export interface Settings {
 }
 
 export class Preset {
-  constructor(name: string, settings: Settings) {
+  constructor(id: number, name: string, author: string, settings: Settings) {
+    this.id = id
     this.name = name
+    this.author = author
     this.settings = settings
   }
+  id: number
   name: string
+  author: string
   settings: Settings
 }
 

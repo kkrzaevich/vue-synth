@@ -50,6 +50,10 @@ export const useUserStore = defineStore('users', () => {
         email: existingUser.email,
         username: existingUser.username
       }
+
+      loading.value = false
+
+      return user.value
     }
 
     loading.value = false
@@ -109,6 +113,8 @@ export const useUserStore = defineStore('users', () => {
     }
 
     loading.value = false
+
+    return newUser
   }
 
   const handleLogout = async () => {

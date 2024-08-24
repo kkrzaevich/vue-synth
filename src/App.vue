@@ -1,17 +1,29 @@
 <script setup lang="ts">
 import { getNoteIdFromKeyCode } from '@/hooks/getNoteIdFromKeyCode'
-import { onMounted, provide, ref } from 'vue'
+import { onMounted, provide, ref, watch } from 'vue'
 import SynthPresets from './components/SynthPresets.vue'
 import SynthKeyboard from './components/SynthKeyboard.vue'
 import SynthControls from './components/SynthControls.vue'
 import SynthNavbar from './components/SynthNavbar.vue'
+import SynthPresetBrowser from './components/SynthPresetBrowser.vue'
 import { useKeyboardStore } from '@/stores/keyboard'
+import { supabase } from '@/supabase'
 
-const { changeKeyboardInput } = useKeyboardStore()
+const { changeKeyboardInput, resetInputs } = useKeyboardStore()
 
 const keysPressed = ref<string[]>([])
 
+const presetBrowserVisible = ref(false)
+
+const blockKeys = ref(false)
+
+function toggleBlockKeys() {
+  blockKeys.value = !blockKeys.value
+  console.log(blockKeys.value)
+}
+
 function keyPress(event: any) {
+  if (blockKeys.value) return
   const noteId = getNoteIdFromKeyCode(event.keyCode)
   if (!keysPressed.value.includes(event.keyCode) && noteId) {
     keysPressed.value.push(event.keyCode)
@@ -20,6 +32,7 @@ function keyPress(event: any) {
 }
 
 function keyRelease(event: any) {
+  if (blockKeys.value) return
   const index = keysPressed.value.indexOf(event.keyCode)
   keysPressed.value.splice(index, 1)
   const noteId = getNoteIdFromKeyCode(event.keyCode)
@@ -27,12 +40,31 @@ function keyRelease(event: any) {
     changeKeyboardInput(noteId, false)
   }
 }
+
+watch(blockKeys, (value) => {
+  if (!value) blockKeys.value = false
+})
+
+addEventListener('blur', (event) => {
+  resetInputs()
+})
 </script>
 
 <template>
   <main @keydown="keyPress" @keyup="keyRelease">
     <v-card class="synth" variant="elevated" elevation="10">
-      <SynthPresets />
+      <SynthPresets
+        @presetBrowserVisible="
+          () => {
+            presetBrowserVisible = !presetBrowserVisible
+          }
+        "
+      />
+      <SynthPresetBrowser
+        v-if="presetBrowserVisible"
+        class="preset-browser"
+        @focusTextArea="toggleBlockKeys"
+      />
       <SynthControls />
       <SynthKeyboard />
     </v-card>

@@ -520,12 +520,23 @@ export const useKeyboardStore = defineStore('keyboard', () => {
     }
   }
 
+  function resetInputs() {
+    keyboard.value.forEach((octave) => {
+      octave.keyData.forEach((key) => {
+        key.keyboardInput = false
+        key.mouseInput = false
+        key.sound?.stop()
+      })
+    })
+  }
+
   return {
     keyboard,
     context,
     changeKeyboardInput,
     changeMouseInput,
     setSounds,
-    createContext
+    createContext,
+    resetInputs
   }
 })

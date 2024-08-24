@@ -1,7 +1,7 @@
 import { Preset } from '@/types/types'
 
 export const presetTable: Preset[] = [
-  new Preset('Serene sinewaves', {
+  new Preset(1, 'Serene sinewaves', 'default', {
     oscType: 'sine',
     attack: 0.001,
     decay: 1,
@@ -15,7 +15,7 @@ export const presetTable: Preset[] = [
     delayFeedback: 0.5,
     volume: 1
   }),
-  new Preset('Future organ', {
+  new Preset(2, 'Future organ', 'default', {
     oscType: 'sawtooth',
     attack: 1,
     decay: 1,
@@ -29,7 +29,7 @@ export const presetTable: Preset[] = [
     delayFeedback: 0.5,
     volume: 1
   }),
-  new Preset('Bird songs', {
+  new Preset(3, 'Bird songs', 'default', {
     oscType: 'square',
     attack: 1,
     decay: 1,
@@ -43,7 +43,7 @@ export const presetTable: Preset[] = [
     delayFeedback: 0.7,
     volume: 1
   }),
-  new Preset('Some kind of piano', {
+  new Preset(4, 'Some kind of piano', 'default', {
     oscType: 'sawtooth',
     attack: 0.001,
     decay: 1.3,
@@ -57,7 +57,7 @@ export const presetTable: Preset[] = [
     delayFeedback: 0.7,
     volume: 1
   }),
-  new Preset('The fall', {
+  new Preset(5, 'The fall', 'default', {
     oscType: 'sawtooth',
     attack: 0.001,
     decay: 1.3,
@@ -71,7 +71,7 @@ export const presetTable: Preset[] = [
     delayFeedback: 0.7,
     volume: 0.4
   }),
-  new Preset('Sleep well', {
+  new Preset(6, 'Sleep well', 'default', {
     oscType: 'triangle',
     attack: 1.6,
     decay: 1,
@@ -85,7 +85,7 @@ export const presetTable: Preset[] = [
     delayFeedback: 0.5,
     volume: 1
   }),
-  new Preset('Eternity', {
+  new Preset(7, 'Eternity', 'default', {
     oscType: 'sine',
     attack: 1.6,
     decay: 1,
@@ -99,7 +99,7 @@ export const presetTable: Preset[] = [
     delayFeedback: 0.8,
     volume: 0.4
   }),
-  new Preset('Trumpets', {
+  new Preset(8, 'Trumpets', 'default', {
     oscType: 'sawtooth',
     attack: 0.1,
     decay: 0.2,

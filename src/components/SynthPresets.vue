@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import { type Preset } from '@/types/types'
-import { ref, onMounted, computed, watch } from 'vue'
-import { presetTable } from '@/data/presetData'
+import { ref, onBeforeMount, computed, watch } from 'vue'
 import { usePresetStore } from '@/stores/presets'
+import { storeToRefs } from 'pinia'
 
 const presetStore = usePresetStore()
 
+const { presetTable } = storeToRefs(presetStore)
+
 const items = ref(['a', 'b', 'c', 'd'])
+
+const visible = ref(false)
+
+onBeforeMount(() => {
+  presetStore.getPresetsFromDb()
+})
 </script>
 
 <template>
@@ -19,19 +27,9 @@ const items = ref(['a', 'b', 'c', 'd'])
       </div>
       <div class="preset">
         <div class="text-center">
-          <v-menu>
-            <template v-slot:activator="{ props }">
-              <button id="preset-field" v-bind="props">
-                {{ presetStore.currentPreset.name }}
-              </button>
-            </template>
-
-            <v-list>
-              <v-list-item v-for="(item, index) in items" :key="index">
-                <v-list-item-title>{{ item }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+          <button id="preset-field" @click="$emit('presetBrowserVisible')">
+            {{ `${presetStore.currentPreset.author} : ${presetStore.currentPreset.name}` }}
+          </button>
         </div>
       </div>
       <div class="arrow-right">
@@ -43,6 +41,10 @@ const items = ref(['a', 'b', 'c', 'd'])
 </template>
 
 <style scoped lang="scss">
+div {
+  border-radius: 0px;
+}
+
 .presets {
   grid-row-start: 1;
   grid-row-end: 2;
@@ -59,7 +61,6 @@ const items = ref(['a', 'b', 'c', 'd'])
   padding-bottom: 0.75rem;
 
   margin-top: 0.75rem;
-  margin-bottom: 1.5rem;
 
   border-radius: 0px;
 }

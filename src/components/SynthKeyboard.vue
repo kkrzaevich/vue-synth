@@ -44,8 +44,8 @@ onBeforeMount(() => {
 
 <style scoped lang="scss">
 .keyboard {
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
   grid-column-start: 2;
   grid-column-end: 5;
   margin: auto;

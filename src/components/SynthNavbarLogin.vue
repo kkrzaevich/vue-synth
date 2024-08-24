@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores/users'
+import { supabase } from '@/supabase'
 
 const { handleLogin } = useUserStore()
 
@@ -15,8 +16,8 @@ function closeModal() {
 }
 
 async function submit() {
-  const res = await handleLogin(email.value, password.value)
-  if (res) {
+  const res: any = await handleLogin(email.value, password.value)
+  if (res.username) {
     closeModal()
   }
 }

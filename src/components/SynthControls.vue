@@ -110,8 +110,8 @@ import { getOscType } from '@/hooks/getOscType'
 
 <style scoped lang="scss">
 .controls {
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
   grid-column-start: 2;
   grid-column-end: 5;
 
@@ -120,6 +120,7 @@ import { getOscType } from '@/hooks/getOscType'
   grid-template-columns: 1fr 3fr 3fr 3fr 1fr;
 
   margin-bottom: 30px;
+  margin-top: 1.5rem;
 }
 
 .base-controls {
