@@ -77,7 +77,6 @@ const presetNameRules = ref([
 <template>
   <v-card class="add-preset" elevation="3">
     <v-form class="add-preset-form" @submit.prevent="addNewPreset" v-model="formIsValid">
-      <v-btn text="Add preset" :type="formIsValid ? 'submit' : 'button'"></v-btn>
       <v-text-field
         rounded="0"
         density="compact"
@@ -86,6 +85,7 @@ const presetNameRules = ref([
         v-model="newPresetName"
         @update:focused="$emit('focusTextArea')"
       ></v-text-field>
+      <v-btn text="Add preset" :type="formIsValid ? 'submit' : 'button'"></v-btn>
     </v-form>
   </v-card>
 </template>
@@ -101,13 +101,19 @@ const presetNameRules = ref([
   .add-preset-form {
     display: flex;
     gap: 10px;
-    justify-content: center;
+    justify-content: left;
     align-items: top;
     flex-direction: row;
     padding: 15px;
+    flex-wrap: wrap;
 
-    textarea {
-      font-weight: bold;
+    @media (max-width: 630px) {
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .v-input {
+      min-width: 75px;
     }
 
     button {

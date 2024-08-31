@@ -48,6 +48,7 @@ async function deletePreset(presetId: number) {
               :color="preset.id === currentPreset.id ? '#424242' : ''"
               variant="elevated"
               v-bind="props"
+              rounded="0"
               class="text-none main-button"
               @click="presetStore.selectPresetFromBrowser(preset.id)"
             >
@@ -75,7 +76,7 @@ async function deletePreset(presetId: number) {
 .transition-container {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 7px;
   flex-wrap: wrap;
   position: relative;
 }
@@ -113,20 +114,16 @@ async function deletePreset(presetId: number) {
   flex-direction: row;
   gap: 5px;
   flex-wrap: wrap;
-  height: 275px;
-  max-height: 275px;
+  height: 225px;
+  max-height: 225px;
   overflow-y: auto;
   overflow-x: hidden;
   align-content: flex-start;
   justify-content: flex-start;
 
-  .main-button {
-    font-size: 1rem;
-    border-radius: 0px;
-    letter-spacing: inherit;
-    font-family: inherit;
-    width: 240px;
-    z-index: 0;
+  @media (max-width: 630px) {
+    height: 150px;
+    max-height: 150px;
   }
 
   .preset-button-container {
@@ -137,8 +134,20 @@ async function deletePreset(presetId: number) {
       right: 0px;
       bottom: 0px;
       padding: 0px;
-      transform: translate(10%, 10%);
+      transform: translate(30%, 30%);
       z-index: 1;
+    }
+  }
+}
+
+@media (max-width: 630px) {
+  .container {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto;
+
+    .authors-container {
+      height: 150px;
+      max-height: 150px;
     }
   }
 }

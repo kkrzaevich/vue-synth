@@ -2,11 +2,12 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores/users'
-import { supabase } from '@/supabase'
+import { useWindowSize } from 'vue-window-size'
 
 const { handleLogin } = useUserStore()
 
 const { loading, errorMessage } = storeToRefs(useUserStore())
+const { width: screenWidth } = useWindowSize()
 
 const showModal = defineModel<boolean>()
 
@@ -55,7 +56,7 @@ const passwordRules = ref([
     <v-dialog v-model="showModal" width="auto" @afterLeave="closeModal">
       <v-card
         max-width="400"
-        min-width="400"
+        :min-width="screenWidth > 630 ? 400 : 300"
         title="Log In"
         class="card"
         rounded="0"
@@ -100,6 +101,18 @@ const passwordRules = ref([
   button {
     text-transform: unset;
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .container {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto;
+
+    .authors-container {
+      height: 150px;
+      max-height: 150px;
+    }
   }
 }
 </style>

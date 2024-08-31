@@ -130,4 +130,13 @@ main {
     width: 585px;
   }
 }
+
+/* Для телефонов */
+
+@media (max-width: 625px) {
+  .synth {
+    grid-template-columns: 10px 110px 110px 110px 10px;
+    width: 360px;
+  }
+}
 </style>

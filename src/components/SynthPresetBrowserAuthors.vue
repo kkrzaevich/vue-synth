@@ -20,6 +20,7 @@ const uniqueAuthors = computed(() => {
         variant="elevated"
         :color="author === currentAuthor ? '#424242' : ''"
         class="text-none main-button"
+        rounded="0"
         v-for="author in uniqueAuthors"
         :key="author"
         @click="$emit('authorChange', author)"
@@ -34,7 +35,7 @@ const uniqueAuthors = computed(() => {
 .transition-container {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 7px;
   flex-wrap: wrap;
   position: relative;
 }
@@ -68,14 +69,5 @@ const uniqueAuthors = computed(() => {
   align-content: flex-start;
   justify-content: flex-start;
   position: relative;
-}
-
-.main-button {
-  font-size: 1rem;
-  border-radius: 0px;
-  letter-spacing: inherit;
-  font-family: inherit;
-  width: 240px;
-  z-index: 0;
 }
 </style>

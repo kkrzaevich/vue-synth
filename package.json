@@ -23,6 +23,7 @@
     "sass": "^1.77.6",
     "vue": "^3.4.29",
     "vue-router": "^4.4.2",
+    "vue-window-size": "^2.0.0",
     "vuetify": "^3.6.10"
   },
   "devDependencies": {

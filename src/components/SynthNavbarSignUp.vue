@@ -2,10 +2,12 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores/users'
+import { useWindowSize } from 'vue-window-size'
 
 const { handleSignup } = useUserStore()
 
 const { loading, errorMessage } = storeToRefs(useUserStore())
+const { width: screenWidth } = useWindowSize()
 
 const showModal = defineModel<boolean>()
 
@@ -80,7 +82,7 @@ const confirmPasswordRules = ref([
     <v-dialog v-model="showModal" width="auto" @afterLeave="closeModal">
       <v-card
         max-width="400"
-        min-width="400"
+        :min-width="screenWidth > 630 ? 400 : 300"
         title="Sign Up"
         class="card"
         rounded="0"

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { supabase } from '@/supabase'
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, onBeforeMount, watch } from 'vue'
 import { useUserStore } from '@/stores/users'
+import { usePresetStore } from '@/stores/presets'
 import { storeToRefs } from 'pinia'
 
 import SynthPresetBrowserAuthors from './SynthPresetBrowserAuthors.vue'
@@ -10,7 +11,11 @@ import SynthPresetBrowserPresets from './SynthPresetBrowserPresets.vue'
 
 const userStore = useUserStore()
 
+const presetStore = usePresetStore()
+
 const { user } = storeToRefs(userStore)
+
+const { currentPreset } = storeToRefs(presetStore)
 
 const addPresetVisible = ref(false)
 
@@ -30,6 +35,10 @@ watch(user, async () => {
 
 onMounted(async () => {
   userId.value = await getUserId()
+})
+
+onBeforeMount(() => {
+  currentAuthor.value = currentPreset.value.author
 })
 </script>
 
@@ -109,8 +118,8 @@ onMounted(async () => {
   gap: 15px;
 
   .authors-container {
-    height: 275px;
-    max-height: 275px;
+    height: 225px;
+    max-height: 225px;
     border-radius: 0px;
     position: relative;
     z-index: 0;
@@ -124,6 +133,18 @@ onMounted(async () => {
 
     .rotated {
       transform: translate(5px, 5px) rotate(45deg);
+    }
+  }
+}
+
+@media (max-width: 630px) {
+  .container {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto;
+
+    .authors-container {
+      height: 150px;
+      max-height: 150px;
     }
   }
 }

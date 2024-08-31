@@ -56,8 +56,6 @@ const props = defineProps<{
     grid-row-end: 3;
     grid-column-start: 1;
     grid-column-end: 2;
-
-    margin-top: 30px;
   }
 
   .octave-4 {
@@ -65,8 +63,36 @@ const props = defineProps<{
     grid-row-end: 3;
     grid-column-start: 2;
     grid-column-end: 3;
+  }
+}
 
-    margin-top: 30px;
+@media (max-width: 630px) {
+  .octave-1 {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .octave-2 {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .octave-3 {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .octave-4 {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 2;
   }
 }
 </style>

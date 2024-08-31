@@ -44,41 +44,13 @@ onBeforeMount(() => {
 
 <style scoped lang="scss">
 .keyboard {
+  justify-self: center;
   grid-row-start: 4;
   grid-row-end: 5;
   grid-column-start: 2;
   grid-column-end: 5;
-  margin: auto;
-}
-
-/* Для широких экранов */
-
-@media (min-width: 1300px) {
-  .keyboard {
-    display: flex;
-    background-color: #f8f0df;
-  }
-}
-
-/* Для чуть менее широких экранов */
-
-@media (max-width: 1299px) {
-  .keyboard {
-    display: flex;
-    background-color: #f8f0df;
-  }
-}
-
-/* Для планшетов */
-
-@media (max-width: 1149px) {
-  .keyboard {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: auto;
-    border: none;
-    border-radius: 0px;
-    background-color: white;
-  }
+  display: grid;
+  grid-auto-flow: column;
+  gap: 30px 0px;
 }
 </style>

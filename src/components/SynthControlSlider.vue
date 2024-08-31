@@ -45,30 +45,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <p>{{ annotation }}</p>
-  <div class="control-box">
-    <v-slider
-      :id="name"
-      :name="name"
-      :min="min"
-      v-model="sliderValue"
-      @end="setStoreValue"
-      value="0"
-      class="slider"
-      :max="max"
-      :step="step"
-      width="80%"
-      min-width="80%"
-      density="compact"
-    >
-      <!-- <template v-slot:append>
-        {{ values ? sliderValueComputed : Number(sliderValue).toFixed(rounding) }}
-      </template> -->
-    </v-slider>
-    <label for="oscType" class="label">{{
-      values ? sliderValueComputed : Number(sliderValue).toFixed(rounding)
-    }}</label>
-  </div>
+  <section>
+    <p>{{ annotation }}</p>
+    <div class="control-box">
+      <v-slider
+        :id="name"
+        :name="name"
+        :min="min"
+        v-model="sliderValue"
+        @end="setStoreValue"
+        value="0"
+        class="slider"
+        :max="max"
+        :step="step"
+        width="80%"
+        min-width="80%"
+        density="compact"
+      >
+        <!-- <template v-slot:append>
+          {{ values ? sliderValueComputed : Number(sliderValue).toFixed(rounding) }}
+        </template> -->
+      </v-slider>
+      <label for="oscType" class="label">{{
+        values ? sliderValueComputed : Number(sliderValue).toFixed(rounding)
+      }}</label>
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
